@@ -12,13 +12,15 @@ import { Link as RouteLink } from "react-router-dom";
 import { ROUTE_SIGNUP } from "../../../Integration/Router/Routes";
 import handleInputData from "../../../Utils/eventHelpers/handleInputData";
 import PropTypes from "prop-types";
-import { isValidFormData } from "../../../Utils/Validators/handlers";
+import isValidFormData from "../../../Utils/Validators/handlers/isValidFormData";
 import usernameRule from "../../../Utils/Validators/FieldRules/usernameRule";
 import passwordRule from "../../../Utils/Validators/FieldRules/passwordRule";
 
 const useStyles = styles;
 
 export default function SignInForm({ submitTo = null }) {
+  const nameUsername = "username";
+  const namePassword = "password";
   const labelPassword = "Password";
 
   const [formState, dispatch] = useReducer(
@@ -28,16 +30,24 @@ export default function SignInForm({ submitTo = null }) {
 
   const submit = (e) => {
     e.preventDefault();
-    isValidFormData([usernameRule, passwordRule], formState);
-    if (submitTo) {
+    if (
+      isValidFormData([usernameRule, passwordRule], formState, dispatch) &&
+      submitTo
+    ) {
       submitTo(formState);
     }
+    console.log(formState);
   };
 
   const classes = useStyles();
 
   return (
-    <Container component="form" maxWidth="xs" onSubmit={submit}>
+    <Container
+      component="form"
+      maxWidth="xs"
+      onSubmit={submit}
+      noValidate={true}
+    >
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -51,25 +61,45 @@ export default function SignInForm({ submitTo = null }) {
           margin="normal"
           required
           fullWidth
-          id="username"
+          id={nameUsername}
           label="Username"
-          name="username"
+          name={nameUsername}
           autoComplete="username"
           autoFocus
           onChange={handleInputData(dispatch)}
+          error={
+            nameUsername in formState && "error" in formState[nameUsername]
+              ? true
+              : false
+          }
+          helperText={
+            nameUsername in formState && "error" in formState[nameUsername]
+              ? formState[nameUsername].error
+              : ""
+          }
         />
         <TextField
           variant="outlined"
           margin="normal"
           required
           fullWidth
-          name="password"
+          name={namePassword}
           label={labelPassword}
           aria-label={labelPassword}
           type="password"
           id="password"
           autoComplete="current-password"
           onChange={handleInputData(dispatch)}
+          error={
+            namePassword in formState && "error" in formState[namePassword]
+              ? true
+              : false
+          }
+          helperText={
+            namePassword in formState && "error" in formState[namePassword]
+              ? formState[namePassword].error
+              : ""
+          }
         />
         <Button
           type="submit"

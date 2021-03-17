@@ -35,14 +35,24 @@ describe("Testing form to sign in", () => {
     fireEvent.type(password, text);
     expect(password).toHaveProperty("value", text);
   });
-
-  test.todo("Data validation");
-  test.todo("Disable button when submitting");
 });
 
 describe("Testing data handling", () => {
   afterEach(cleanup);
 
+  test("It does not submit form if fields are empty", () => {
+    const mock = jest.fn();
+    render(
+      <MemoryRouter>
+        <SignInForm submitTo={mock} />
+      </MemoryRouter>
+    );
+    fireEvent.click(screen.getByRole("textbox", { name: "Username" }));
+    fireEvent.tab();
+    fireEvent.click(screen.getByRole("button", { name: "Sign In" }));
+    expect(mock).not.toHaveBeenCalled();
+  });
+  
   test("When passed a function to submit data, form executes it", () => {
     const mock = jest.fn();
     const { container } = render(
@@ -53,6 +63,7 @@ describe("Testing data handling", () => {
     const text = "This is a testing";
     const username = screen.getByRole("textbox", { name: "Username" });
     fireEvent.type(username, text);
+    fireEvent.tab();
     const password = container.querySelector("[type='password']");
     fireEvent.type(password, text);
     fireEvent.click(screen.getByRole("button", { name: "Sign In" }));

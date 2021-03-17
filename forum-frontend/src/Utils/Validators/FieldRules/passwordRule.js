@@ -1,9 +1,8 @@
-import emailRule from "../Rules/emailRule";
 import nonEmptyRule from "../Rules/nonEmptyRule";
 
 const passwordRule = {
   name: "password",
-  rules: [nonEmptyRule, emailRule],
+  rules: [nonEmptyRule],
 };
 
 export default passwordRule;
