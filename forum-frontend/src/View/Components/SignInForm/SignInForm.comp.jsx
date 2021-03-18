@@ -36,18 +36,12 @@ export default function SignInForm({ submitTo = null }) {
     ) {
       submitTo(formState);
     }
-    console.log(formState);
   };
 
   const classes = useStyles();
 
   return (
-    <Container
-      component="form"
-      maxWidth="xs"
-      onSubmit={submit}
-      noValidate={true}
-    >
+    <Container component="form" maxWidth="xs" onSubmit={submit}>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>

@@ -1,3 +1,6 @@
+import usernameRule from "../FieldRules";
+import emailFieldRule from "../FieldRules/emailRule";
+import passwordRule from "../FieldRules/passwordRule";
 import isValidFormData from "./isValidFormData";
 
 describe("Testing form data validator function", () => {
@@ -16,7 +19,7 @@ describe("Testing form data validator function", () => {
       message: "Rule message",
     };
     const rule2 = {
-      validator: jest.fn(()=>true),
+      validator: jest.fn(() => true),
       condition: true,
       message: "Rule message",
     };
@@ -33,7 +36,7 @@ describe("Testing form data validator function", () => {
 
   test("If validation is fine, it will return true", () => {
     const rule = {
-      validator: jest.fn(()=>true),
+      validator: jest.fn(() => true),
       condition: true,
       message: "Rule message",
     };
@@ -45,4 +48,7 @@ describe("Testing form data validator function", () => {
     expect(notifier).not.toHaveBeenCalled();
   });
 
+  test("Validating with three rules", () => {
+    expect(isValidFormData([usernameRule, emailFieldRule, passwordRule], {})).toBeFalsy();
+  });
 });

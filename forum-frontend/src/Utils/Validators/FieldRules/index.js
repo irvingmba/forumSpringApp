@@ -1,5 +1,3 @@
-import usernameRule from "./usernameRule";
-
-const allFieldRules = { usernameRule };
-
-export default allFieldRules;
+export { default } from "./usernameRule";
+export { default } from "./passwordRule";
+export { default } from "./emailRule";
