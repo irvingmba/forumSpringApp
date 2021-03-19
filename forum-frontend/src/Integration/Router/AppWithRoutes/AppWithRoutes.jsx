@@ -1,6 +1,7 @@
 import { Container, CssBaseline } from "@material-ui/core";
 import { Route, Switch } from "react-router-dom";
 import NavBar from "../../../View/Components/NavBar";
+import { mainPost, sections } from "../../../View/Content";
 import Main from "../../../View/Pages/Main/Main.comp";
 import SignInPage from "../../../View/Pages/SignIn/SigInPage.comp";
 import SignUpPage from "../../../View/Pages/SignUp/SignUpPage.comp";
@@ -20,7 +21,7 @@ export default function AppWithRoutes() {
             <SignInPage />
           </Route>
           <Route>
-            <Main />
+            <Main mainPost={mainPost} topics={sections} />
           </Route>
         </Switch>
       </Container>

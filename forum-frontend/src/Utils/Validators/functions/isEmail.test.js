@@ -1,4 +1,4 @@
-import isEmail from "../isEmail";
+import { isEmail } from ".";
 
 describe("Testing validor to check if received value is an email", () => {
   test.each([
@@ -19,7 +19,7 @@ describe("Testing validor to check if received value is an email", () => {
     [[]],
     [jest.fn()],
     [true],
-    [Symbol("example@example.com")]
+    [Symbol("example@example.com")],
   ])("Testing validator with %s should throw", (email) => {
     expect(() => isEmail(email)).toThrow();
   });

@@ -2,23 +2,23 @@ import { ROUTE_BOOKS, ROUTE_GAMES, ROUTE_GRAL, ROUTE_MOVIES, ROUTE_MUSIC } from 
 
 const topics = [
   {
-    topic: "General",
+    title: "General",
     uri: ROUTE_GRAL,
   },
   {
-    topic: "Games",
+    title: "Games",
     uri: ROUTE_GAMES,
   },
   {
-    topic: "Books",
+    title: "Books",
     uri: ROUTE_BOOKS,
   },
   {
-    topic: "Music",
+    title: "Music",
     uri: ROUTE_MUSIC,
   },
   {
-    topic: "Movies",
+    title: "Movies",
     uri: ROUTE_MOVIES,
   },
 ];
