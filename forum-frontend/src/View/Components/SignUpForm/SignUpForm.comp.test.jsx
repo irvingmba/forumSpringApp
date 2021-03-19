@@ -1,7 +1,8 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import fireEvent from "@testing-library/user-event";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, Route } from "react-router-dom";
 import SignUpForm from ".";
+import { ROUTE_SIGNIN } from "../../../Integration/Router/Routes/Routes";
 
 describe("Testing sign up component", () => {
   afterEach(cleanup);
@@ -43,9 +44,6 @@ describe("Testing sign up component", () => {
     );
   });
 
-  test.todo("Form validation");
-  test.todo("Sign up click button");
-  test.todo("Change to sign in page");
   test.todo("Disable button when submitting");
 });
 
@@ -92,5 +90,29 @@ describe("Testing data handling", () => {
     fireEvent.type(password.querySelector("input"), passwordText);
     fireEvent.click(submitButton);
     expect(mockSubmit).toHaveBeenCalled();
+  });
+});
+
+describe("Testing of router functionality", ()=>{
+  test("Testing link to go to sign in page", () => {
+    let testHistory, testLocation;
+    render(
+      <MemoryRouter>
+        <SignUpForm />
+        <Route
+          path="*"
+          render={({ history, location }) => {
+            testHistory = history;
+            testLocation = location;
+            return null;
+          }}
+        />
+      </MemoryRouter>
+    );
+    const link = screen.getByRole("link", {
+      name: "Already have an account? Sign in",
+    });
+    fireEvent.click(link);
+    expect(testLocation.pathname).toEqual(ROUTE_SIGNIN);
   });
 });

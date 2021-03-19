@@ -1,6 +1,4 @@
-import usernameRule from "../FieldRules";
-import emailFieldRule from "../FieldRules/emailRule";
-import passwordRule from "../FieldRules/passwordRule";
+import { usernameRule, emailFieldRule, passwordRule } from "../FieldRules";
 import isValidFormData from "./isValidFormData";
 
 describe("Testing form data validator function", () => {
@@ -47,8 +45,40 @@ describe("Testing form data validator function", () => {
     expect(rule.validator).toHaveBeenCalled();
     expect(notifier).not.toHaveBeenCalled();
   });
+});
 
-  test("Validating with three rules", () => {
-    expect(isValidFormData([usernameRule, emailFieldRule, passwordRule], {})).toBeFalsy();
+describe("Testing the form data validator function using custom rules", () => {
+  test("Validating when there is not data, it will return false and call callback", () => {
+    const mock = jest.fn();
+    expect(
+      isValidFormData([usernameRule, emailFieldRule, passwordRule], {}, mock)
+    ).toBeFalsy();
+    expect(mock).toHaveBeenCalled();
+  });
+
+  test("Validating when data is wrong, will return false and call callback", () => {
+    const mock = jest.fn();
+    const data = {
+      username: { value: "" },
+      email: { value: "wrong" },
+      password: { value: "" },
+    };
+    expect(
+      isValidFormData([usernameRule, emailFieldRule, passwordRule], data, mock)
+    ).toBeFalsy();
+    expect(mock).toHaveBeenCalledTimes(3);
+  });
+
+  test("Validating when data is fine, it will just return true", () => {
+    const mock = jest.fn();
+    const data = {
+      username: { value: "john" },
+      email: { value: "john@example.com" },
+      password: { value: "password" },
+    };
+    expect(
+      isValidFormData([usernameRule, emailFieldRule, passwordRule], data, mock)
+    ).toBeTruthy();
+    expect(mock).not.toHaveBeenCalled();
   });
 });

@@ -9,12 +9,13 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import styles from "./materialStyles";
 import { Link as RouteLink } from "react-router-dom";
-import { ROUTE_SIGNUP } from "../../../Integration/Router/Routes";
+import { ROUTE_SIGNUP } from "../../../Integration/Router/Routes/Routes";
 import handleInputData from "../../../Utils/eventHelpers/handleInputData";
 import PropTypes from "prop-types";
 import isValidFormData from "../../../Utils/Validators/handlers/isValidFormData";
 import usernameRule from "../../../Utils/Validators/FieldRules/usernameRule";
 import passwordRule from "../../../Utils/Validators/FieldRules/passwordRule";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const useStyles = styles;
 
@@ -42,10 +43,9 @@ export default function SignInForm({ submitTo = null }) {
 
   return (
     <Container component="form" maxWidth="xs" onSubmit={submit}>
-      <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <AccountCircleIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in

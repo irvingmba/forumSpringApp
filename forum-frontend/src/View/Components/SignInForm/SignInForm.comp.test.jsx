@@ -1,7 +1,7 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import fireEvent from "@testing-library/user-event";
 import { MemoryRouter, Route } from "react-router-dom";
-import { ROUTE_SIGNUP } from "../../../Integration/Router/Routes";
+import { ROUTE_SIGNUP } from "../../../Integration/Router/Routes/Routes";
 import SignInForm from "./SignInForm.comp";
 
 describe("Testing form to sign in", () => {

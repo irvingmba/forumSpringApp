@@ -1,3 +1,3 @@
-export { default } from "./usernameRule";
-export { default } from "./passwordRule";
-export { default } from "./emailRule";
+export { default as usernameRule } from "./usernameRule";
+export { default as passwordRule } from "./passwordRule";
+export { default as emailFieldRule } from "./emailRule";
