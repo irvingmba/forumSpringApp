@@ -11,7 +11,7 @@ const sections = [
   {
     title: "General",
     uri: ROUTE_GRAL,
-    component: <General role="feed" />,
+    component: General,
   },
   {
     title: "Games",
