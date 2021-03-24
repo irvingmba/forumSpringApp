@@ -1,13 +1,14 @@
 import { Container, CssBaseline } from "@material-ui/core";
 import { Route, Switch } from "react-router-dom";
-import NavBar from "../../../View/Components/NavBar";
-import { mainPost, sections } from "../../../View/Content";
-import Main from "../../../View/Pages/Main/Main.comp";
-import SignInPage from "../../../View/Pages/SignIn/SigInPage.comp";
-import SignUpPage from "../../../View/Pages/SignUp/SignUpPage.comp";
-import { ROUTE_SIGNIN, ROUTE_SIGNUP } from "../Routes/Routes";
 
-export default function AppWithRoutes() {
+import NavBar from "../../Components/NavBar";
+import { mainPost, sections } from "../../Content";
+import Main from "../Main/Main.comp";
+import SignInPage from "../SignIn/SigInPage.comp";
+import SignUpPage from "../SignUp/SignUpPage.comp";
+import { ROUTE_SIGNIN, ROUTE_SIGNUP } from "../../../Integration/Router/Routes/Routes";
+
+export default function Base() {
   return (
     <>
       <Container maxWidth="lg">

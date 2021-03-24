@@ -1,13 +1,8 @@
-import { BrowserRouter as Router } from "react-router-dom";
-import AppWithRoutes from "./Router/AppWithRoutes/AppWithRoutes";
+import AppWithState from "./State/AppProvider";
 
 function App() {
   return (
-    <>
-      <Router>
-        <AppWithRoutes />
-      </Router>
-    </>
+    <AppWithState />
   );
 }
 

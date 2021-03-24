@@ -11,27 +11,22 @@ const sections = [
   {
     title: "General",
     uri: ROUTE_GRAL,
-    component: General,
   },
   {
     title: "Games",
     uri: ROUTE_GAMES,
-    component: <></>,
   },
   {
     title: "Books",
     uri: ROUTE_BOOKS,
-    component: <></>,
   },
   {
     title: "Music",
     uri: ROUTE_MUSIC,
-    component: <></>,
   },
   {
     title: "Movies",
     uri: ROUTE_MOVIES,
-    component: <></>,
   },
 ];
 
