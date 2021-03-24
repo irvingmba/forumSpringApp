@@ -10,7 +10,7 @@ import Container from "@material-ui/core/Container";
 import styles from "./materialStyles";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { ROUTE_SIGNIN } from "../../../Integration/Router/Routes";
+import { ROUTE_SIGNIN } from "../../../Integration/Router/Routes/Routes";
 import isValidFormData from "../../../Utils/Validators/handlers/isValidFormData";
 import usernameRule from "../../../Utils/Validators/FieldRules/usernameRule";
 import passwordRule from "../../../Utils/Validators/FieldRules/passwordRule";
@@ -20,6 +20,9 @@ import handleInputData from "../../../Utils/eventHelpers/handleInputData";
 const useStyles = styles;
 
 export default function SignUpForm({ submitTo = null }) {
+  const nameUsername = "username";
+  const nameEmail = "email";
+  const namePassword = "password";
   const labelPassword = "Password";
 
   const [formState, dispatch] = useReducer(
@@ -39,14 +42,12 @@ export default function SignUpForm({ submitTo = null }) {
     ) {
       submitTo(formState);
     }
-    console.log(formState);
   };
 
   const classes = useStyles();
 
   return (
     <Container component="form" maxWidth="xs" onSubmit={submit}>
-      <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -60,12 +61,20 @@ export default function SignUpForm({ submitTo = null }) {
               variant="outlined"
               required
               fullWidth
-              id="username"
+              id={nameUsername}
               label="Username"
-              name="username"
+              name={nameUsername}
               autoComplete="username"
               autoFocus
               onChange={handleInputData(dispatch)}
+              error={
+                nameUsername in formState && "error" in formState[nameUsername]
+              }
+              helperText={
+                nameUsername in formState && "error" in formState[nameUsername]
+                  ? formState[nameUsername]["error"]
+                  : ""
+              }
             />
           </Grid>
           <Grid item xs={12}>
@@ -73,11 +82,17 @@ export default function SignUpForm({ submitTo = null }) {
               variant="outlined"
               required
               fullWidth
-              id="email"
+              id={nameEmail}
               label="Email Address"
-              name="email"
+              name={nameEmail}
               autoComplete="email"
               onChange={handleInputData(dispatch)}
+              error={nameEmail in formState && "error" in formState[nameEmail]}
+              helperText={
+                nameEmail in formState && "error" in formState[nameEmail]
+                  ? formState[nameEmail]["error"]
+                  : ""
+              }
             />
           </Grid>
           <Grid item xs={12}>
@@ -85,13 +100,21 @@ export default function SignUpForm({ submitTo = null }) {
               variant="outlined"
               required
               fullWidth
-              name="password"
+              name={namePassword}
               label={labelPassword}
               aria-label={labelPassword}
               type="password"
               id="password"
               autoComplete="current-password"
               onChange={handleInputData(dispatch)}
+              error={
+                namePassword in formState && "error" in formState[namePassword]
+              }
+              helperText={
+                namePassword in formState && "error" in formState[namePassword]
+                  ? formState[namePassword]["error"]
+                  : ""
+              }
             />
           </Grid>
         </Grid>

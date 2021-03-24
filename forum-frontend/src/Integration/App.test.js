@@ -1,5 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import App from '../App';
+import { render } from "@testing-library/react";
+import App from "./App";
 
-test.todo("Check routes");
-test.todo("Check rendering");
+describe("Testing complete application", () => {
+  test("Application is rendering at first time", () => {
+    const { container } = render(
+        <App />
+    );
+    expect(container).toHaveProperty("children");
+    expect(container.children).not.toHaveLength(0);
+  });
+});
