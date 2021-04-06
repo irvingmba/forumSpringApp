@@ -21,7 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-docker": "cd ./dockerfiles/ && ./buildDockerImage.sh -v 18.4.0 -x",
+    "run-oracledb": "docker run --name oracleDB -d -p 10080:8080 -p 1521:1521 -p 5500:5500 -e ORACLE_PWD=tekmexico123 -e ORACLE_CHARACTERSET=AL32UTF8 -v forumdb:/opt/oracle/oradata oracle/database:18.4.0-xe"
   },
   "eslintConfig": {
     "extends": [
