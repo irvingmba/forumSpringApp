@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+ import { Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 import FeaturedPost from "../FeaturedPost";
 
