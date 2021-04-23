@@ -1,4 +1,4 @@
-import operationsReducer from "./operationsReducer";
+import {operationsReducer} from ".";
 
 describe("Testing function for reducer of operations", () => {
     test("Executing the reducer without parameters will throw", () => {

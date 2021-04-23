@@ -1,7 +1,6 @@
 import React, { useReducer } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -16,10 +15,11 @@ import usernameRule from "../../../Utils/Validators/FieldRules/usernameRule";
 import passwordRule from "../../../Utils/Validators/FieldRules/passwordRule";
 import emailFieldRule from "../../../Utils/Validators/FieldRules/emailRule";
 import handleInputData from "../../../Utils/eventHelpers/handleInputData";
+import extractValues from "../../../Utils/Formatters/ExtractValues";
 
 const useStyles = styles;
 
-export default function SignUpForm({ submitTo = null }) {
+export default function SignUpForm({ submitTo }) {
   const nameUsername = "username";
   const nameEmail = "email";
   const namePassword = "password";
@@ -143,4 +143,8 @@ export default function SignUpForm({ submitTo = null }) {
 
 SignUpForm.propTypes = {
   submitTo: PropTypes.func,
+};
+
+SignUpForm.defaultProps = {
+  submitTo: null,
 };
