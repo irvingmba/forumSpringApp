@@ -1,4 +1,5 @@
 import signInOp from ".";
+import { signInNS } from "../../../InitialState/operations";
 import { OP_PROCESSING } from "../OperationStates";
 
 describe("Testing function to update sign up operation in state", () => {
@@ -19,7 +20,7 @@ describe("Testing function to update sign up operation in state", () => {
     const action = {payload: OP_PROCESSING};
     const state = signInOp(prevState, action);
     expect(prevState).not.toBe(state);
-    expect(state).toHaveProperty("signup");
-    expect(state["signup"]).toHaveProperty("status", OP_PROCESSING);
+    expect(state).toHaveProperty(signInNS);
+    expect(state[signInNS]).toHaveProperty("status", OP_PROCESSING);
   });
 });

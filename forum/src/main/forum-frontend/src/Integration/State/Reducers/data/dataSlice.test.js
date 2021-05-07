@@ -1,4 +1,4 @@
-import dataReducer from "./dataReducer";
+import dataReducer from ".";
 
 describe("Testing function for reducer of data", () => {
   test("Executing the reducer without parameters will throw", () => {

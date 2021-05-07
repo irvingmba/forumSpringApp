@@ -1,5 +1,6 @@
 import { OP_PROCESSING } from "../OperationStates";
 import signUpOp from ".";
+import { signUpNS } from "../../../InitialState/operations";
 
 describe("Testing function to update sign up operation in state", () => {
   test("When payload does not exist it will ", () => {
@@ -19,7 +20,7 @@ describe("Testing function to update sign up operation in state", () => {
     const action = {payload: OP_PROCESSING};
     const state = signUpOp(prevState, action);
     expect(prevState).not.toBe(state);
-    expect(state).toHaveProperty("signup");
-    expect(state["signup"]).toHaveProperty("status", OP_PROCESSING);
+    expect(state).toHaveProperty(signUpNS);
+    expect(state[signUpNS]).toHaveProperty("status", OP_PROCESSING);
   });
 });

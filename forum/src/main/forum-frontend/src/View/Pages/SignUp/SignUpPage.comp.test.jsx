@@ -4,9 +4,9 @@ import {
 } from "../../../__test-utils__/react-redux/renderProvider";
 import { MemoryRouter, Route } from "react-router-dom";
 import SignUpPage from "./SignUpPage.comp";
-import { useSelector } from "react-redux";
 import { OP_OK } from "../../../Integration/State/Reducers/operations/OperationStates";
 import { ROUTE_SIGNUP } from "../../../Integration/Router/Routes/Routes";
+import { operationsState } from "../../../Integration/State/InitialState";
 
 describe("Testing sign in page", () => {
   afterEach(cleanup);

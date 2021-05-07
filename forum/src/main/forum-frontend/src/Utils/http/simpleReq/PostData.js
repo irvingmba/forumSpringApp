@@ -1,11 +1,11 @@
 import axios from "axios";
+import respErrorHandler from "../../../ErrorHandling/axios/RespErrorHandler";
 
 async function postData(address, data){
     try {
         return await axios.post(address, data);
     } catch (error) {
-        console.error(error);
-        return {error: error.message};
+        return respErrorHandler(console.log, error);
     }
 };
 

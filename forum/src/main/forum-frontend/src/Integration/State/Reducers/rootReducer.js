@@ -1,5 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import dataReducer from "./dataReducer";
+import dataReducer from "./data";
 import errorsReducer from "./errorsReducer";
 import {operationsReducer} from "./operations";
 

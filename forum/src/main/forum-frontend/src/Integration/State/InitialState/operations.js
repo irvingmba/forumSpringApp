@@ -1,4 +1,4 @@
-const signUpNS = "singup";
+const signUpNS = "signup";
 const signInNS = "signin";
 
 const operationsState = {};

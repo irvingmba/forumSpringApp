@@ -3,6 +3,7 @@ import TopicBar from "../../Components/TopicBar/TopicBar.comp";
 import MainFeaturedPost from "../../Components/MainFeaturedPost";
 import { mainPost } from "../../Content";
 import TopicsSwitch from "../../Components/TopicsHandler";
+import AddPost from "../../Components/AddPost/AddPost";
 
 export default function Main({ topics = [] }) {
   return (
@@ -12,6 +13,7 @@ export default function Main({ topics = [] }) {
         topics={topics}
         defaultTopic={<MainFeaturedPost post={mainPost} />}
       />
+      <AddPost />
     </>
   );
 }

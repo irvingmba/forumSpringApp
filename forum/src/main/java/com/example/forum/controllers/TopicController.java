@@ -1,5 +1,7 @@
 package com.example.forum.controllers;
 
+import java.util.HashMap;
+
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,8 +15,11 @@ public class TopicController {
 	
 	@MessageMapping(postLtnr)
 	@SendTo(postDest)
-	public void getTopicPosts() {
-		
+	public HashMap<String, String> getTopicPosts() {
+		System.out.println("Here");
+		HashMap<String, String> resp = new HashMap<String, String>();
+		resp.put("hello", "world");
+		return resp;
 	}
 
 }
