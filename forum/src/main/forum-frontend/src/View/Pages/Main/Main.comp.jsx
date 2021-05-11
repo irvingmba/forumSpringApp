@@ -3,17 +3,21 @@ import TopicBar from "../../Components/TopicBar/TopicBar.comp";
 import MainFeaturedPost from "../../Components/MainFeaturedPost";
 import { mainPost } from "../../Content";
 import TopicsSwitch from "../../Components/TopicsHandler";
-import AddPost from "../../Components/AddPost/AddPost";
+import { useSelector } from "react-redux";
 
 export default function Main({ topics = [] }) {
+
+  const topicState = useSelector(state=>{
+    return state.data.topics;
+  });
+
   return (
     <>
-      <TopicBar topics={topics} />
+      <TopicBar topics={topicState} />
       <TopicsSwitch
-        topics={topics}
+        topics={topicState}
         defaultTopic={<MainFeaturedPost post={mainPost} />}
       />
-      <AddPost />
     </>
   );
 }

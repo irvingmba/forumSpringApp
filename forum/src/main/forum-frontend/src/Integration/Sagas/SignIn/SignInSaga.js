@@ -21,6 +21,7 @@ function* signInSaga(action) {
     return;
   }
   yield put(operationsActions.signInOp(OP_OK));
+  yield put(dataActions.setProfile({username: formatted.username, signedin:true}));
   const { token } = response && "data" in response ? response["data"] : null;
   yield put(dataActions.setToken(token));
   yield put(socketAct());

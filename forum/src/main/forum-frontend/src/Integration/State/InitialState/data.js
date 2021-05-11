@@ -1,8 +1,4 @@
-import { topics } from "../../../View/Content";
-
-const data = {
-    topics
-};
+const data = {};
 
 export const token = "token";
 

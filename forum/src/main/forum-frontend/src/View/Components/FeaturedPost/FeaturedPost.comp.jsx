@@ -6,7 +6,9 @@ import {
   Typography,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
+import { getCommentsAction } from "../../../Integration/Sagas/GetComments";
 
 import { isObject } from "../../../Utils/Validators/functions";
 import styles from "./materialStyles";
@@ -16,18 +18,21 @@ export default function FeaturedPost({ post = {} }) {
 
   if (!isObject(post)) throw new TypeError("Post should be a proper object");
 
-  const { push, location } = useHistory();
+  const location = useLocation();
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const clickHandler = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
     if (post.link) {
-      push(`${location.pathname}${post.link}`);
+      history.push(location.pathname + "/" + post.link);
+      dispatch(getCommentsAction(post));
     }
   };
 
   return (
     <Grid role="article" item xs={12}>
-      <CardActionArea onClick={clickHandler}>
+      <CardActionArea onClick={handleClick}>
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
@@ -38,10 +43,10 @@ export default function FeaturedPost({ post = {} }) {
                 {post.author}
               </Typography>
               <Typography variant="subtitle2" color="textSecondary">
-                {post.date}
+                {post.p_date}
               </Typography>
               <Typography variant="subtitle1" paragraph>
-                {post.content}
+                {post.description}
               </Typography>
               {post.link && (
                 <Typography variant="subtitle1" color="primary">
@@ -62,6 +67,6 @@ FeaturedPost.propTypes = {
     author: PropTypes.string,
     content: PropTypes.string,
     date: PropTypes.string,
-    link: PropTypes.string
+    link: PropTypes.string,
   }),
 };

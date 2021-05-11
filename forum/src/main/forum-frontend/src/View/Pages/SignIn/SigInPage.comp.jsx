@@ -21,7 +21,6 @@ export default function SignInPage() {
 
   const signInOk = useSelector((state) => {
     const selected = state.operations[signInNS];
-    console.log(state);
     return selected && "status" in selected && selected["status"] === OP_OK;
   });
   const send2Saga = compose(dispatch, signInAct);

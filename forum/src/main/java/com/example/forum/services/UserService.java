@@ -73,7 +73,7 @@ public class UserService {
 	public String signin(String username, String password) {
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-			List<Role> roleList = new ArrayList();
+			List<Role> roleList = new ArrayList<Role>();
 			roleList.add(Role.ROLE_CLIENT);
 			return jwtTokenProvider.createToken(username, roleList);
 		} catch (AuthenticationException e) {

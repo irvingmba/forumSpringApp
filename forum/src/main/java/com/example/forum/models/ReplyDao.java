@@ -23,7 +23,7 @@ public class ReplyDao {
 	@GeneratedValue(generator = "reply_generator")
 	@GenericGenerator(name = "reply_generator", strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator", parameters = {
 			@Parameter(name = "sequence_name", value = "SYSTEM.reply_seq") })
-	private Long reply_id;
+	private Long replyId;
 
 	@Column(name = "description", length = 1000, nullable = false)
 	private String description;
@@ -34,19 +34,57 @@ public class ReplyDao {
 	@Column(name = "author", length = 50, nullable = false)
 	private String author;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="post_id", nullable = false)
-	private PostDao post;
+	@Column(name = "post_id", length = 10, nullable = false)
+	private long postId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="reply_to")
-	private ReplyDao reply;
+	@Column(name = "reply_to", length = 10)
+	private Long replyTo;
 	
-	public ReplyDao(String description, String author) {
+	public ReplyDao(String description, String author, long postId) {
 		this.description = description;
 		this.author = author;
 		this.r_date = OffsetDateTime.now();
-		this.post = null;
-		this.reply = null;
+		this.postId = postId;
 	}
+	public ReplyDao() {
+		
+	}
+	public Long getReplyId() {
+		return replyId;
+	}
+	public void setReplyId(Long replyId) {
+		this.replyId = replyId;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public OffsetDateTime getR_date() {
+		return r_date;
+	}
+	public void setR_date(OffsetDateTime r_date) {
+		this.r_date = r_date;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public long getPostId() {
+		return postId;
+	}
+	public void setPostId(long postId) {
+		this.postId = postId;
+	}
+	public Long getReplyTo() {
+		return replyTo;
+	}
+	public void setReplyTo(long replyTo) {
+		this.replyTo = replyTo;
+	}
+	
+	
 }

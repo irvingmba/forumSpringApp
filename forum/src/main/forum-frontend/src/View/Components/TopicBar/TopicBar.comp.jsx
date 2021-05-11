@@ -16,7 +16,7 @@ export default function TopicBar({ topics }) {
           topics.map((topic, index) => (
             <Link
               key={topic.title + index}
-              to={topic.uri}
+              to={`/${topic.title.toLowerCase()}`}
               className={classes.toolbarLink}
             >
               <Typography

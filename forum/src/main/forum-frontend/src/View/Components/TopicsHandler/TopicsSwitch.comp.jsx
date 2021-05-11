@@ -1,16 +1,16 @@
 import { Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
-import { Route, Switch } from "react-router-dom";
-// import RouteWithTopic from "../RouteWithTopic";
+import { Route, Switch, useLocation } from "react-router-dom";
 import TopicContent from "../TopicContent";
 
-export default function TopicsSwitch({ topics, defaultTopic }) {
+export default function TopicsSwitch({ topics, defaultTopic, post }) {
+
   return (
     <Switch>
       {topics.length &&
-        topics.map(({ uri, title }, index) => (
-          <Route key={uri + index.toString()} path={uri}>
-            <TopicContent title={title}  />
+        topics.map(({ title }, index) => (
+          <Route key={title + index.toString()} path={`/${title.toLowerCase()}`}>
+            {!post && <TopicContent title={title}  />}
           </Route>
         ))}
       <Route>{defaultTopic}</Route>
@@ -35,6 +35,7 @@ TopicsSwitch.propTypes = {
     })
   ),
   defaultTopic: PropTypes.element,
+  post: PropTypes.string
 };
 
 TopicsSwitch.defaultProps = {

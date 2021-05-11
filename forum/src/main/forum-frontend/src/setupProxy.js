@@ -22,4 +22,33 @@ module.exports = function proxy(app) {
       changeOrigin: true,
     })
   );
-}
+  app.use(
+    "/topic",
+    createProxyMiddleware({
+      target: "http://localhost:8080",
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    "/post/get",
+    createProxyMiddleware({
+      target: "http://localhost:8080",
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    "/post/comments",
+    createProxyMiddleware({
+      target: "http://localhost:8080",
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    "/app",
+    createProxyMiddleware({
+      target: "http://localhost:8080",
+      ws: true,
+      // changeOrigin: true,
+    })
+  );
+};

@@ -2,21 +2,19 @@ import { eventChannel } from "redux-saga";
 
 function createSocketChannel(client, token) {
   return eventChannel((emit) => {
+    // client.connect({Authorization: `Bearer ${token}`}, function (frame) {
+    //   console.log("connected");
+    // });
 
-    client.connect({Authorization: `Bearer ${token}`}, function (frame) {
-      console.log("connected");
-    });
-
-    client.subscribe("/topic/posts", function (msg) {
-      console.log(msg);
-      emit(msg);
+    const subscriptionTopic = client.subscribe("/topic/new", (e) => {
+      console.log("topic",e);
     });
 
     const unsubscribe = () => {
-      client.disconect();
+      subscriptionTopic.unsubscribe();
+      client.deactivate();
       console.log("disconnected");
     };
-    console.log("done channel");
 
     return unsubscribe;
   });
